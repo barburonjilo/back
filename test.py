@@ -2,7 +2,16 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import requests
 import time
+from selenium.webdriver.chrome.options import Options
+chrome_options = Options()
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--disable-gpu')
+chrome_options.add_argument('--disable-dev-shm-usage')
+chrome_options.add_argument('--profile-directory=Default')
+chrome_options.add_argument('--user-data-dir=~/.config/google-chrome')
 
+driver = webdriver.Chrome(options=chrome_options)
 proxy_url = "https://raw.githubusercontent.com/barburonjilo/back/main/pro.txt"
 credentials_url = "https://raw.githubusercontent.com/barburonjilo/back/main/ema.txt"
 
@@ -10,14 +19,13 @@ proxies = requests.get(proxy_url).text.strip().split("\n")
 emails = requests.get(credentials_url).text.strip().split("\n")
 
 def create_driver(proxy):
-    options = webdriver.ChromeOptions()
 
     if proxy.startswith('socks'):
-        options.add_argument('--proxy-server=socks5://%s' % proxy)
+        chrome_options.add_argument('--proxy-server=socks5://%s' % proxy)
     else:
-        options.add_argument('--proxy-server=http://%s' % proxy)
+        chrome_options.add_argument('--proxy-server=http://%s' % proxy)
 
-    driver = webdriver.Chrome(options=options)
+    driver = webdriver.Chrome(options=chrome_options)
     driver.maximize_window()
     driver.get('https://ide.goorm.io/my/dashboard/')
     return driver
