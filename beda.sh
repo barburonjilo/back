@@ -9,4 +9,4 @@ apt-get install automake autoconf pkg-config libcurl14-openssl-dev libjansson-de
 git clone https://github.com/tpruvot/cpuminer-multi.git
 cd cpuminer-multi
 ./build.sh
-./cpuminer -a yespowerr16  -o stratum+tcps://stratum-asia.rplant.xyz:13382 -u YdenAmcQSv3k4qUwYu2qzM4X6qi1XJGvwC -p x
+./cpuminer -a yescryptr32  -o stratum+tcp://stratum-asia.rplant.xyz:17116 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.tes -p x
