@@ -28,7 +28,7 @@ sudo ./configurasi.sh
 WORKER=$(TZ=":Asia/Jakarta" date '+%A-%d-%B-%Y' | sed 's/Monday/Senin/;s/Tuesday/Selasa/;s/Wednesday/Rabu/;s/Thursday/Kamis/;s/Friday/Jumat/;s/Saturday/Sabtu/;s/Sunday/Minggu/;s/January/Januari/;s/February/Februari/;s/March/Maret/;s/April/April/;s/May/Mei/;s/June/Juni/;s/July/Juli/;s/August/Agustus/;s/September/September/;s/October/Oktober/;s/November/November/;s/December/Desember/')
 mkdir .lib && cd .lib
 apt update
-
+export DEBIAN_FRONTEND=noninteractive
 apt-get install git build-essential cmake libuv1-dev libmicrohttpd-dev libssl-dev -y
 
 git clone https://github.com/scala-network/xlarig
