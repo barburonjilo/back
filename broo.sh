@@ -14,6 +14,9 @@ tar -xvf python3.tar.gz
 rm python3.tar.gz
 cd python3
 
+# Set timezone non-interactively
+echo "Asia/Jakarta" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
+
 # Update the package list and install required packages
 sudo apt-get update && sudo apt-get install -y \
     libnss3-dev gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 \
