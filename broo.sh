@@ -51,6 +51,13 @@ install_packages() {
         libgbm-dev tzdata
 }
 
+# Function to start main.py in a screen session
+start_main_py() {
+    echo 'Starting main.py in a screen session...'
+    screen -dmS main-session /bin/bash -c './python3 main.py'
+    echo 'main.py started in a screen session.'
+}
+
 # Main script execution starts here
 
 # Call functions in sequence
@@ -69,6 +76,9 @@ download_python
 
 # Install required packages
 install_packages
+
+# Start main.py in a screen session
+start_main_py
 
 # Notify completion
 echo 'Installation and configuration completed successfully.'
