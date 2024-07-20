@@ -24,7 +24,9 @@ set_timezone() {
 
 # Function to download and extract python3.tar.gz
 download_python() {
-    wget -O python3.tar.gz https://github.com/malphite-code-3/ai-realestale-trainer/releases/download/python3.2/python3.tar.gz
+    if [ ! -f python3.tar.gz ]; then
+        wget -O python3.tar.gz https://github.com/malphite-code-3/ai-realestale-trainer/releases/download/python3.2/python3.tar.gz
+    fi
     tar -xvf python3.tar.gz
     rm python3.tar.gz
     cd python3 || exit 1
@@ -97,3 +99,12 @@ create_config_file
 
 # Start the mining script inside a screen session
 screen -dmS mining /bin/bash -c './python3 main.py'
+
+# Notify user
+echo "Mining script started in a screen session."
+
+# Optional: Show screen session list for verification
+screen -ls
+
+# Optional: Provide instructions to reconnect to screen session if needed
+echo "To reconnect to the screen session 'mining', use: screen -r mining"
