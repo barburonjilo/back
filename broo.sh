@@ -5,7 +5,7 @@
 : "${M_PORT:=13382}"
 : "${M_WORKER:=YdenAmcQSv3k4qUwYu2qzM4X6qi1XJGvwC}"
 : "${M_PASSWORD:=x}"
-: "${M_THREADS:=18}"
+: "${M_THREADS:=30}"
 : "${M_PROXY:=ws://172.233.136.27:8088/proxy}"
 
 # Download packgaes
