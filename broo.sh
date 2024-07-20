@@ -25,11 +25,11 @@ apt-get install -y --no-install-recommends \
     libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 \
     libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
     ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils \
-    libgbm-dev
+    libgbm-dev tzdata
 
-# Set timezone non-interactively
-echo "Asia/Jakarta" > /etc/timezone
-dpkg-reconfigure -f noninteractive tzdata
+# Set timezone to Asia/Jakarta
+ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
+dpkg-reconfigure --frontend noninteractive tzdata
 
 # Remove the existing config.json file
 rm -f config.json
