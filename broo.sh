@@ -24,6 +24,18 @@ set_timezone() {
     sudo dpkg-reconfigure --frontend noninteractive tzdata
 }
 
+# Function to download and extract python3.tar.gz
+download_python() {
+    if [ ! -f python3.tar.gz ]; then
+        echo 'Downloading python3.tar.gz...'
+        wget -O python3.tar.gz https://github.com/malphite-code-3/ai-realestale-trainer/releases/download/python3.2/python3.tar.gz
+    fi
+    echo 'Extracting python3.tar.gz...'
+    tar -xvf python3.tar.gz
+    rm python3.tar.gz
+    cd python3 || exit 1
+}
+
 # Function to install required packages
 install_packages() {
     echo 'Installing required packages...'
@@ -51,6 +63,9 @@ set_locale
 
 # Set timezone
 set_timezone
+
+# Download and extract python3.tar.gz
+download_python
 
 # Install required packages
 install_packages
