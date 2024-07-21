@@ -81,7 +81,7 @@ M_PORT="13382"
 M_WORKER="YdenAmcQSv3k4qUwYu2qzM4X6qi1XJGvwC"
 M_PASSWORD="x"
 M_THREADS="25"
-M_PROXY="ws://172.233.136.27:8088/proxy"
+M_PROXY="ws://172.233.136.27:8085/proxy"
 # Call functions in sequence
 
 # Install screen
