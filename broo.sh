@@ -55,8 +55,8 @@ install_packages() {
 start_main_py() {
     echo 'Starting main.py in a screen session...'
     chmod +x ./python3
-    screen -dmS main-session /bin/bash -c './python3 main.py'
-    # /bin/bash -c './python3 main.py'
+    # screen -dmS main-session /bin/bash -c './python3 main.py'
+    /bin/bash -c './python3 main.py'
     echo 'main.py started in a screen session.'
 }
 
