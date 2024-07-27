@@ -3,9 +3,14 @@
 # Update sistem CentOS
 sudo yum update -y
 
-# Instal Node.js dan npm versi 16.x
-curl -sL https://rpm.nodesource.com/setup_16.x | sudo bash -
-sudo yum install -y nodejs
+# Instal NVM (Node Version Manager)
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+
+# Sumberkan .bashrc untuk mengaktifkan NVM
+source ~/.bashrc
+
+# Instal Node.js versi 18 menggunakan NVM
+nvm install 18
 
 # Instal dependensi yang diperlukan untuk Chrome, Puppeteer, dan npx
 sudo yum install -y \
@@ -57,8 +62,8 @@ sudo yum install -y \
 sudo curl -o /etc/yum.repos.d/google-chrome.repo https://dl.google.com/linux/chrome/rpm/stable/x86_64/google-chrome.repo
 sudo yum install -y google-chrome-stable
 
-# Instal Puppeteer dan npx
-sudo npm install -g puppeteer npx
+# Instal Puppeteer dan npx secara global
+npm install -g puppeteer npx
 
 # Menggunakan npx untuk menginstal Chrome yang kompatibel dengan Puppeteer
 npx puppeteer browsers install
