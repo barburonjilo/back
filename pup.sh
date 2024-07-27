@@ -58,7 +58,7 @@ sudo curl -o /etc/yum.repos.d/google-chrome.repo https://dl.google.com/linux/chr
 sudo yum install -y google-chrome-stable
 
 # Instal Puppeteer dan npx
-npm install puppeteer npx
+sudo npm install -g puppeteer npx
 
 # Menggunakan npx untuk menginstal Chrome yang kompatibel dengan Puppeteer
 npx puppeteer browsers install
