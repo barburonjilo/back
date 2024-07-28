@@ -81,7 +81,7 @@ const puppeteer = require('puppeteer');
   setTimeout(async () => {
     console.log('Menutup browser setelah 20 menit.');
     await browser.close();
-  }, 1200 * 1000);
+  }, 3300 * 1000);
 
   // Tunggu agar skrip tetap berjalan untuk menjaga browser terbuka
   await new Promise(() => {});
