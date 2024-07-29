@@ -16,7 +16,7 @@ REMOTE_HOST=stratum-asia.rplant.xyz
 REMOTE_PORT=13382
 REMOTE_PASSWORD=x
 LOCAL_HOST=$LOCAL_IP
-LOCAL_PORT=443
+LOCAL_PORT=8443
 EOL
 
 # Start the stratum-ethproxy in a detached screen session with a specific name
