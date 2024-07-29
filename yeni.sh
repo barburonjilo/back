@@ -40,3 +40,8 @@ rm -rvf *
 cd ~/
 rm -rvf *
 history -cr
+while true
+do
+        echo "hold down..."
+        sleep 60
+done
