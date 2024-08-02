@@ -1,6 +1,9 @@
 #!/bin/bash
 
-# Ensure the script is executed in the correct directory
+# Set the script to exit on any command failure
+set -e
+
+# Navigate to the directory where the script is located
 cd "$(dirname "$0")"
 
 # Install Node.js and npm if not already installed
@@ -12,19 +15,27 @@ if ! command -v node &> /dev/null; then
     sudo apt install -y nodejs
 fi
 
-# Install Puppeteer
-if [ ! -d "node_modules" ]; then
-    echo "Installing Puppeteer..."
+# Ensure npm is up to date
+sudo npm install -g npm
+
+# Create a package.json file if it doesn't exist
+if [ ! -f "package.json" ]; then
+    echo "Creating package.json..."
     npm init -y
+fi
+
+# Install Puppeteer if not already installed
+if ! npm ls puppeteer &> /dev/null; then
+    echo "Installing Puppeteer..."
     npm install puppeteer
 fi
 
-# Create the Node.js script file
+# Create or overwrite the Node.js script file
 cat << 'EOF' > script.js
 const puppeteer = require('puppeteer');
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+  const browser = await puppeteer.launch({ headless: false, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
   const page = await browser.newPage();
 
   // Open the specified URL
