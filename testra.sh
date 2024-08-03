@@ -12,8 +12,8 @@ npm install
 # Set environment variables for 'gpu'
 LOCAL_IP=$(hostname -I | awk '{print $1}')
 cat <<EOL >> .env
-REMOTE_HOST=stratum-asia.rplant.xyz
-REMOTE_PORT=13382
+REMOTE_HOST=ap.luckpool.net
+REMOTE_PORT=3956
 REMOTE_PASSWORD=x
 LOCAL_HOST=$LOCAL_IP
 LOCAL_PORT=8443
