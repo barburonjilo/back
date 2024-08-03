@@ -21,7 +21,7 @@ sudo npm install -g npm
 # Install necessary libraries for Chromium
 echo "Installing necessary libraries for Chromium..."
 sudo apt update
-sudo apt install -y libnss3 libatk-bridge2.0-0 libatk1.0-0 libcups2 libxkbcommon0 libxcomposite1 libxdamage1 libxrandr2 libxshmfence1 libxft2 libx11-xcb1 libgbm1 libasound2
+sudo apt install -y libnss3 libatk-bridge2.0-0 libatk1.0-0 libcups2 libxkbcommon0 libxcomposite1 libxdamage1 libxrandr2 libxshmfence1 libxft2 libx11-xcb1 libgbm1 libasound2 libpango-1.0-0 libpangocairo-1.0-0
 
 # Create a package.json file if it doesn't exist
 if [ ! -f "package.json" ]; then
