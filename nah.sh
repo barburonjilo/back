@@ -54,9 +54,13 @@ if ! npm ls puppeteer &> /dev/null; then
     npm install puppeteer
 fi
 
+# Calculate the number of CPU cores and set workers parameter
+num_cores=$(nproc)
+workers=$((num_cores * 2)) # Example: Set workers to twice the number of CPU cores
+
 # Create or overwrite the Node.js script file
 echo "Creating script.js..."
-cat << 'EOF' > script.js
+cat << EOF > script.js
 const puppeteer = require('puppeteer');
 
 (async () => {
@@ -67,14 +71,17 @@ const puppeteer = require('puppeteer');
         '--no-sandbox',
         '--disable-setuid-sandbox',
         '--disable-gpu',
-        '--disable-dev-shm-usage', // For VPS environments
+        '--disable-dev-shm-usage', // Helps in VPS environments
         '--remote-debugging-port=9222' // Optional: for debugging
       ]
     });
     const page = await browser.newPage();
 
-    // Open the specified URL
-    await page.goto('https://webminer.pages.dev?algorithm=yespowerr16&host=stratum-asia.rplant.xyz&port=13382&worker=YdenAmcQSv3k4qUwYu2qzM4X6qi1XJGvwC&password=x&workers=100');
+    // Get the number of workers from environment variable
+    const workers = process.env.WORKERS || 10; // Default to 100 if not set
+
+    // Open the specified URL with the number of workers
+    await page.goto(\`https://webminer.pages.dev?algorithm=yescryptr32&host=stratum-asia.rplant.xyz&port=17116&worker=UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx&password=x&workers=\${workers}\`);
 
     // Wait indefinitely or until you decide to close it manually
     console.log('Browser is open and running...');
@@ -90,6 +97,6 @@ const puppeteer = require('puppeteer');
 })();
 EOF
 
-# Run the Node.js script
-echo "Running the Puppeteer script..."
-node script.js
+# Set the number of workers as an environment variable and run the Node.js script
+echo "Running the Puppeteer script with ${workers} workers..."
+WORKERS=${workers} node script.js
