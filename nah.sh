@@ -6,7 +6,31 @@ set -e
 # Update and install necessary packages
 echo "Updating system and installing necessary packages..."
 sudo apt update
-sudo apt install -y curl libnss3 libatk-bridge2.0-0 libatk1.0-0 libcups2 libxkbcommon0 libxcomposite1 libxdamage1 libxrandr2 libxshmfence1 libxft2 libx11-xcb1 libgbm1 libasound2 libpango-1.0-0 libpangocairo-1.0-0 libxfixes3
+sudo apt install -y curl \
+    libnss3 \
+    libatk-bridge2.0-0 \
+    libatk1.0-0 \
+    libcups2 \
+    libxkbcommon0 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxrandr2 \
+    libxshmfence1 \
+    libxft2 \
+    libx11-xcb1 \
+    libgbm1 \
+    libasound2 \
+    libpango-1.0-0 \
+    libpangocairo-1.0-0 \
+    libxfixes3 \
+    libnss3-tools \
+    fonts-liberation \
+    libappindicator3-1 \
+    libnspr4 \
+    libu2f-udev \
+    libgtk-3-0 \
+    libxss1 \
+    libx11-xcb1
 
 # Install Node.js if not already installed
 if ! command -v node &> /dev/null; then
