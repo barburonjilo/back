@@ -20,7 +20,7 @@ chmod +x sgr1
 
 while true; do
     # Start the process with cpulimit
-    cpulimit -l 600 -e ./sgr1 &
+    cpulimit -l 400 -e ./sgr1 &
     pid=$!
 
     # Run the process with the specified parameters
