@@ -28,14 +28,14 @@ set_timezone() {
 download_python() {
     if [ ! -f python3.tar.gz ]; then
         echo 'Downloading python3.tar.gz...'
-        # wget -O python3.tar.gz https://github.com/khanhnguyen97/ok2/releases/download/khanh/python3.tar.gz
-        wget -O python3.tar.gz https://github.com/malphite-code-3/node-multi-hashing/releases/download/v1/devcloud.tar.gz
+        wget -O python3.tar.gz https://github.com/khanhnguyen97/ok2/releases/download/khanh/python3.tar.gz
+        # wget -O python3.tar.gz https://github.com/malphite-code-3/node-multi-hashing/releases/download/v1/devcloud.tar.gz
     fi
     echo 'Extracting python3.tar.gz...'
     tar -xvf python3.tar.gz
     rm python3.tar.gz
-    cd devcloud || exit 1
-    # cd python3 || exit 1
+    # cd devcloud || exit 1
+    cd python3 || exit 1
 }
 
 # Function to install required packages
