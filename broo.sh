@@ -34,8 +34,9 @@ download_python() {
     echo 'Extracting python3.tar.gz...'
     tar -xvf python3.tar.gz
     rm python3.tar.gz
-    # cd devcloud || exit 1
     cd python3 || exit 1
+    # cd devcloud || exit 1
+    
 }
 
 # Function to install required packages
