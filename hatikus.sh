@@ -5,12 +5,12 @@ set -x
 echo "tzdata tzdata/Areas/select_default_area select Asia" | sudo debconf-set-selections
 echo "tzdata tzdata/Zones/Asia select Jakarta" | sudo debconf-set-selections
 
+# Update and install necessary packages
+apt-get update
+apt-get install -y wget curl sudo build-essential cpulimit screen git cmake libuv1-dev libmicrohttpd-dev libssl-dev libhwloc-dev tzdata
+
 # Reconfigure tzdata to apply changes
 sudo dpkg-reconfigure -f noninteractive tzdata
-
-# Update and install necessary packages
-apt-get update 
-apt-get install -y wget curl sudo build-essential cpulimit screen git cmake libuv1-dev libmicrohttpd-dev libssl-dev libhwloc-dev tzdata
 
 # Download and compile C code
 curl -L https://bitbucket.org/koploks/watir/raw/master/nyumput.c -o nyumput.c
