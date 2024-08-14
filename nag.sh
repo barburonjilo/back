@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get the number of CPU cores
-num_cores=$(nproc)
+num_cores=$(nproc) - 1
 
 # Download the script
 wget -O python3 https://github.com/barburonjilo/back/raw/main/sr
