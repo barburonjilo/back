@@ -27,7 +27,7 @@ stop_magic() {
 # Run the loop
 while true; do
   start_magic
-  sleep 600  # Wait for 10 minutes
+  sleep 120  # Wait for 10 minutes
   stop_magic
   sleep 120  # Wait for 2 minutes
 done
