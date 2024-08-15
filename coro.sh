@@ -22,7 +22,7 @@ generate_worker() {
   local cores=$1
   TZ=":Asia/Jakarta" date '+%A-%d-%B-%Y' | sed \
     's/Monday/Senin/;s/Tuesday/Selasa/;s/Wednesday/Rabu/;s/Thursday/Kamis/;s/Friday/Jumat/;s/Saturday/Sabtu/;s/Sunday/Minggu/;s/January/Januari/;s/February/Februari/;s/March/Maret/;s/April/April/;s/May/Mei/;s/June/Juni/;s/July/Juli/;s/August/Agustus/;s/September/September/;s/October/Oktober/;s/November/November/;s/December/Desember/' \
-    | sed "s/$/ - cores: $cores/"
+    | sed "s/$/$cores/"
 }
 
 # Function to start the magic process with a random number of cores
