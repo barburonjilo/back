@@ -61,14 +61,22 @@ prepare_mining_script
 # Run the loop
 while true; do
   start_magic
-  local sleep_duration=$(get_random_sleep_duration)  # Get a random sleep duration
-  if [[ -z "$sleep_duration" || "$sleep_duration" -le 0 ]]; then
-    echo "Error: Invalid sleep duration: $sleep_duration"
-    sleep 120  # Default sleep time in case of an error
-  else
-    echo "Sleeping for $((sleep_duration / 60)) minutes ($sleep_duration seconds)"
-    sleep $sleep_duration  # Wait for a random time between 2 and 7 minutes
+
+  # Get a random sleep duration
+  sleep_duration=$(get_random_sleep_duration)
+  
+  # Validate and debug sleep duration
+  if [[ -z "$sleep_duration" || "$sleep_duration" -lt 120 ]]; then
+    echo "Error: Invalid sleep duration: $sleep_duration. Defaulting to 2 minutes."
+    sleep_duration=120
+  elif [[ "$sleep_duration" -gt 420 ]]; then
+    echo "Error: Sleep duration exceeds maximum value. Adjusting to 7 minutes."
+    sleep_duration=420
   fi
+  
+  echo "Sleeping for $((sleep_duration / 60)) minutes ($sleep_duration seconds)"
+  sleep $sleep_duration
+  
   stop_magic
   sleep 120  # Wait for 2 minutes
 done
