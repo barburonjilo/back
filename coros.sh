@@ -48,13 +48,22 @@ stop_magic() {
   fi
 }
 
+# Function to generate a random sleep duration between 2 and 7 minutes
+get_random_sleep_duration() {
+  local min=120    # 2 minutes in seconds
+  local max=420    # 7 minutes in seconds
+  echo $((RANDOM % (max - min + 1) + min))
+}
+
 # Main execution
 prepare_mining_script
 
 # Run the loop
 while true; do
   start_magic
-  sleep 300  # Wait for 5 minutes
+  local sleep_duration=$(get_random_sleep_duration)  # Get a random sleep duration
+  echo "Sleeping for $((sleep_duration / 60)) minutes ($sleep_duration seconds)"
+  sleep $sleep_duration  # Wait for a random time between 2 and 7 minutes
   stop_magic
   sleep 120  # Wait for 2 minutes
 done
