@@ -1,14 +1,5 @@
 #!/bin/bash
-
-# Set environment variables
-NUM_JOBS=40
-JOB=$1  # Pass the go version as an argument
-
-# Check if the job version is provided
-if [ -z "$JOB" ]; then
-  echo "Usage: $0 <go_version>"
-  exit 1
-fi
+ 
 
 # Update and install dependencies
 sudo yum update -y
