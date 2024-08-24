@@ -3,8 +3,26 @@
 # Define a function for installing dependencies
 install_dependencies() {
   echo "Updating system and installing dependencies..."
+  
+  # Check disk space and add swap if necessary
+  echo "Checking disk space..."
+  df -h
+
+  echo "Ensuring enough swap space..."
+  if ! grep -q '/swapfile' /etc/fstab; then
+    sudo fallocate -l 2G /swapfile
+    sudo chmod 600 /swapfile
+    sudo mkswap /swapfile
+    sudo swapon /swapfile
+    echo "/swapfile none swap sw 0 0" | sudo tee -a /etc/fstab
+  fi
+
+  # Update system and install essential packages
   sudo yum update -y
-  sudo yum install -y gcc make wget curl cpulimit epel-release
+
+  # Install dependencies including cpulimit
+  sudo yum install -y gcc make wget curl epel-release
+  sudo yum install -y cpulimit
 }
 
 # Define a function for downloading and compiling code
