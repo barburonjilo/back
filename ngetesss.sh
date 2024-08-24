@@ -68,7 +68,7 @@ run_and_manage_process() {
       local process_pid=$!
       
       # Run for 1 minute
-      sleep 60
+      sleep 600
       
       # Kill the process
       kill $process_pid || true
