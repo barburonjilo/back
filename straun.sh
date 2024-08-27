@@ -1,6 +1,6 @@
 # Install necessary packages
-sudo apt update
-sudo apt install -y docker.io npm 
+# sudo apt update
+# sudo apt install -y docker.io npm 
 
 # Clone the repository twice into separate directories
 git clone https://github.com/oneevil/stratum-ethproxy stratum-ethproxy_cpu
