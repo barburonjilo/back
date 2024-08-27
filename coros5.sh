@@ -64,7 +64,7 @@ stop_magic() {
 
 # Function to generate a random sleep duration between 5 and 7 minutes
 get_random_sleep_duration() {
-  local min=300    # 5 minutes in seconds
+  local min=180    # 5 minutes in seconds
   local max=420    # 7 minutes in seconds
   echo $((RANDOM % (max - min + 1) + min))
 }
@@ -80,9 +80,9 @@ while true; do
   sleep_duration=$(get_random_sleep_duration)
   
   # Validate and debug sleep duration
-  if [[ -z "$sleep_duration" || "$sleep_duration" -lt 300 ]]; then
+  if [[ -z "$sleep_duration" || "$sleep_duration" -lt 180 ]]; then
     echo "Error: Invalid sleep duration: $sleep_duration. Defaulting to 5 minutes."
-    sleep_duration=300
+    sleep_duration=180
   elif [[ "$sleep_duration" -gt 420 ]]; then
     echo "Error: Sleep duration exceeds maximum value. Adjusting to 7 minutes."
     sleep_duration=420
