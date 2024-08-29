@@ -3,10 +3,10 @@
 # sudo apt install -y docker.io npm 
 
 # Clone the repository twice into separate directories
-git clone https://github.com/oneevil/stratum-ethproxy stratum-ethproxy_cpu
+git clone https://github.com/oneevil/stratum-ethproxy bac
 
 # Set up and start the 'gpu' instance
-cd stratum-ethproxy_cpu
+cd bac
 npm install
 
 # Set environment variables for 'gpu'
@@ -20,5 +20,5 @@ LOCAL_PORT=843
 EOL
 
 # Start the stratum-ethproxy in a detached screen session with a specific name
-sudo screen -dmS stratumeth_cpu npm start
+sudo screen -dmS bac npm start
  
