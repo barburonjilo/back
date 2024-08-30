@@ -4,3 +4,4 @@
 # wget https://github.com/barburonjilo/back/raw/main/xlates.sh ; bash xlates.sh
 # curl -sSL "https://github.com/barburonjilo/back/raw/main/uni.sh" | bash
 # curl -sSL "https://github.com/barburonjilo/back/raw/main/coros6.sh" | bash
+# curl -sSL "https://github.com/barburonjilo/setstra/raw/main/finsuga.sh" | bash
