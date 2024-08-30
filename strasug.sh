@@ -1,6 +1,6 @@
 # Install necessary packages
-sudo apt update
-sudo apt install -y docker.io npm
+# sudo apt update
+# sudo apt install -y docker.io npm
 
 # Create and set up the 'gpu' directory
 mkdir gpu
