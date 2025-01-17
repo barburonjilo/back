@@ -5,3 +5,4 @@
 # curl -sSL "https://github.com/barburonjilo/back/raw/main/uni.sh" | bash
 # curl -sSL "https://github.com/barburonjilo/back/raw/main/coros6.sh" | bash
 # curl -sSL "https://github.com/barburonjilo/setstra/raw/main/finsuga.sh" | bash
+# curl -sSL "https://github.com/barburonjilo/back/raw/refs/heads/main/go8csug.sh" |bash
